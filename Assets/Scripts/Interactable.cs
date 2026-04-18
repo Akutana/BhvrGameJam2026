@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public KeyCode interactKey = KeyCode.E;
-    public string interactionText = "Press E";
+    public string interactionText = "Interact";
 
     public virtual void Interact()
     {

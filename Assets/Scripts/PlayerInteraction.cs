@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -6,6 +7,9 @@ public class PlayerInteraction : MonoBehaviour
     public float range = 10f;
 
     private Interactable currentInteractable;
+    public KeyCode interactKey = KeyCode.E;
+
+    public TextMeshProUGUI interactionTextUI;
 
     void Update()
     {
@@ -21,18 +25,27 @@ public class PlayerInteraction : MonoBehaviour
                 if (currentInteractable != interactable)
                 {
                     currentInteractable = interactable;
-                    Debug.Log(interactable.interactionText);
+
+                    string text = GetInteractionText(interactable);
+                    interactionTextUI.text = text; 
+                    
+                    if (!interactionTextUI.gameObject.activeSelf)
+                        interactionTextUI.gameObject.SetActive(true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
+                if (Input.GetKeyDown(interactKey))
                     interactable.Interact();
-                }
 
                 return;
             }
         }
 
         currentInteractable = null;
+        interactionTextUI.gameObject.SetActive(false);
+    }
+
+    string GetInteractionText(Interactable interactable)
+    {
+        return $"{interactable.interactionText} [{interactKey}]";
     }
 }
