@@ -11,8 +11,25 @@ public class PlayerInteraction : MonoBehaviour
 
     public TextMeshProUGUI interactionTextUI;
 
+    private Interactable heldObject;
+
     void Update()
     {
+        if (heldObject != null)
+        {
+            if (Input.GetKeyDown(interactKey))
+            {
+                heldObject.Interact();
+                heldObject = null;
+            }
+
+            interactionTextUI.text = $"Drop [{interactKey}]";
+            if (!interactionTextUI.gameObject.activeSelf)
+                interactionTextUI.gameObject.SetActive(true);
+
+            return;
+        }
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 
@@ -34,7 +51,12 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown(interactKey))
+                {
                     interactable.Interact();
+
+                    if (!heldObject && interactable is Grabbable)
+                        heldObject = interactable;
+                }
 
                 return;
             }
