@@ -23,10 +23,7 @@ public class PlayerInteraction : MonoBehaviour
 
             Vector3 targetPos = cam.transform.position + cam.transform.forward * holdDistance;
 
-            // mouvement fluide
             obj.position = Vector3.Lerp(obj.position, targetPos, Time.deltaTime * moveSpeed);
-
-            // rotation face caméra
             obj.rotation = Quaternion.Lerp(obj.rotation, cam.transform.rotation, Time.deltaTime * moveSpeed);
 
             if (Input.GetKeyDown(interactKey))
@@ -73,6 +70,9 @@ public class PlayerInteraction : MonoBehaviour
 
                     string text = GetInteractionText(interactable);
                     interactionTextUI.text = text;
+
+                    if (!interactionTextUI.gameObject.activeSelf)
+                        interactionTextUI.gameObject.SetActive(true);
                 }
 
                 return;

@@ -9,7 +9,7 @@ public class Grabbable : Interactable
 
     public override void Interact()
     {
-        if (!pickedUp && !canBeGrabbed)
+        if (!canBeGrabbed)
             return;
 
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -23,9 +23,7 @@ public class Grabbable : Interactable
             rb.angularVelocity = Vector3.zero;
         }
         else
-        {
             rb.useGravity = true;
-        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -56,7 +54,6 @@ public class Grabbable : Interactable
     {
         if (other.CompareTag("TruckTarget") && !isPlaced)
         {
-            Debug.Log("fhdsjakdlhsjaklfhsdjkla");
             canBeGrabbed = true;
         }
     }
