@@ -32,7 +32,6 @@ public class SceneTransitionManager : MonoBehaviour
     IEnumerator DoTransition(string sceneName)
     {
   
-
         yield return StartCoroutine(Fade(fadeDuration)); // fade to black
 
         SceneManager.LoadScene(sceneName);

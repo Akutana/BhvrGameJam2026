@@ -44,6 +44,7 @@ public class Grabbable : Interactable
                 transform.rotation = target.rotation;
             }
 
+
             else return;
 
             Rigidbody rb = GetComponent<Rigidbody>();

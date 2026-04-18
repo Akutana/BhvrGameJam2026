@@ -7,13 +7,17 @@ public class Prologue : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip truckSound;
     public string nextSceneName;
+    public DoorInteractable doorInteractable;
 
     bool isFinishedLoading = false;
     bool audioStarted = false;
-    bool canEnterTruck = false;
     bool isLoadingScene = false;
+    bool enteredTruck = false;
 
-    public float timeLeft = 60.0f;
+    void Start()
+    {
+        doorInteractable.onEnter.AddListener(OnPlayerEnteredTruck);
+    }
 
     void Update()
     {
@@ -24,16 +28,18 @@ public class Prologue : MonoBehaviour
         }
 
         if (audioStarted && !audioSource.isPlaying)
-            canEnterTruck = true;
+            doorInteractable.setCanEnterDoor(true);
 
-        if (canEnterTruck && !isLoadingScene)
+        if (enteredTruck && !isLoadingScene)
         {
-            if (true) // replace with door interaction condition
-            {
-                isLoadingScene = true;
-                audioSource.PlayOneShot(truckSound);
-                SceneTransitionManager.Instance.TransitionToScene(nextSceneName);
-            }
+            isLoadingScene = true;
+            audioSource.PlayOneShot(truckSound);
+            SceneTransitionManager.Instance.TransitionToScene(nextSceneName);
         }
+    }
+
+    void OnPlayerEnteredTruck()
+    {
+        enteredTruck = true;
     }
 }

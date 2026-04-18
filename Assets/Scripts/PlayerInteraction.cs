@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public Camera cam;
-    public float range = 10f;
+    public float range = 15f;
 
     private Interactable currentInteractable;
     public KeyCode interactKey = KeyCode.E;
@@ -54,10 +54,15 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetKeyDown(interactKey))
                 {
 
-                    if (!heldObject && interactable is Grabbable && interactable.GetComponent<Grabbable>().CanBeGrabbed())
+                    if (!heldObject && interactable is Grabbable grabbable && grabbable.CanBeGrabbed())
+                    {
                         heldObject = interactable;
-                    else return;
-                    interactable.Interact();
+                        interactable.Interact();
+                    }
+                    else if (interactable is not Grabbable)
+                    {
+                        interactable.Interact();
+                    }
                 }
 
                 if (currentInteractable != interactable)
