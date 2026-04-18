@@ -50,7 +50,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (Input.GetKeyDown(interactKey))
                 {
-
                     if (!heldObject && interactable is Grabbable grabbable && grabbable.CanBeGrabbed())
                     {
                         heldObject = interactable;
@@ -62,22 +61,27 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
 
-                if (currentInteractable != interactable)
-                {
-                    currentInteractable = interactable;
+                if (currentInteractable == interactable)
+                    return;
 
-                    if (interactable is Grabbable grabbable && !grabbable.CanBeGrabbed())
+                currentInteractable = interactable;
+
+                if (interactable is Grabbable grabbable2)
+                {
+                    if (!grabbable2.CanBeGrabbed())
                     {
                         currentInteractable = null;
                         interactionTextUI.gameObject.SetActive(false);
                         return;
                     }
 
-                    string text = GetInteractionText(interactable);
-                    interactionTextUI.text = text;
+                    ShowInteractionText(interactable);
+                    return;
+                }
 
-                    if (!interactionTextUI.gameObject.activeSelf)
-                        interactionTextUI.gameObject.SetActive(true);
+                if (interactable.CanBeInteractedWith())
+                {
+                    ShowInteractionText(interactable);
                 }
 
                 return;
@@ -91,5 +95,13 @@ public class PlayerInteraction : MonoBehaviour
     string GetInteractionText(Interactable interactable)
     {
         return $"{interactable.interactionText} [{interactKey}]";
+    }
+
+    private void ShowInteractionText(Interactable interactable)
+    {
+        interactionTextUI.text = GetInteractionText(interactable);
+
+        if (!interactionTextUI.gameObject.activeSelf)
+            interactionTextUI.gameObject.SetActive(true);
     }
 }

@@ -42,12 +42,12 @@ public class Grabbable : Interactable
                 transform.rotation = target.rotation;
             }
 
-
-            else return;
-
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.useGravity = false;
             rb.isKinematic = true;
+
+            if (other.GetComponent<TargetZone>().GetNextTargetPoint())
+                other.GetComponent<TargetZone>().setCanEnterDoor();
         }
     }
 

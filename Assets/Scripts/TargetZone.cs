@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TargetZone : MonoBehaviour
 {
-
     public DoorInteractable doorInteractable;
 
     public Transform GetNextTargetPoint()
@@ -13,7 +12,6 @@ public class TargetZone : MonoBehaviour
             {
                 return targetPoint;
             }
-                
         }
 
         return null;
@@ -23,7 +21,10 @@ public class TargetZone : MonoBehaviour
     {
         if (doorInteractable != null)
         {
+            Debug.Log("not null");
             doorInteractable.setCanEnterDoor(true);
         }
+
+        Debug.Log("null");
     }
 }

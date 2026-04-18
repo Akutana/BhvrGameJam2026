@@ -18,4 +18,9 @@ public class DoorInteractable : Interactable
         canEnterDoor = value;
         interactionText = "Enter truck";
     }
+
+    public override bool CanBeInteractedWith()
+    {
+        return canEnterDoor;
+    }
 }
