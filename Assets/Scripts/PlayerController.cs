@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     public float gravity = -9.81f;
+    public float climbingSpeed = 2f;
 
     [Header("Crouching")]
     public float crouchSpeed = 2.5f;
@@ -17,21 +18,32 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private float standCameraY;
     private float crouchCameraY;
+    private bool isOnLadder = false;
+
+    public enum State { Walking, Climbing }
+    public State currentState = State.Walking;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         standHeight = controller.height;
-        standCameraY = controller.height - 0.2f;        // near the top of the capsule
-        crouchCameraY = crouchHeight - 0.2f;            // near the top when crouched
+        standCameraY = controller.height - 0.2f;
+        crouchCameraY = crouchHeight - 0.2f;
 
-        // Snap camera to correct start position
         Vector3 camPos = cameraTransform.localPosition;
         camPos.y = standCameraY;
         cameraTransform.localPosition = camPos;
     }
 
     void Update()
+    {
+        if (currentState == State.Climbing)
+            HandleClimbing();
+        else
+            HandleWalking();
+    }
+
+    void HandleWalking()
     {
         HandleCrouch();
 
@@ -48,17 +60,31 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    void HandleClimbing()
+    {
+        // Cancel crouch when climbing
+        isCrouching = false;
+
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+
+        // Climb up/down with W/S, strafe on ladder with A/D
+        Vector3 climbMove = transform.up * vertical + transform.right * horizontal;
+        controller.Move(climbMove * climbingSpeed * Time.deltaTime);
+
+        // Kill gravity while on ladder
+        velocity = Vector3.zero;
+    }
+
     void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
             isCrouching = true;
-
         if (Input.GetKeyUp(KeyCode.LeftControl) && CanStandUp())
             isCrouching = false;
 
         float targetHeight = isCrouching ? crouchHeight : standHeight;
 
-        // Smooth controller height with snap
         if (!Mathf.Approximately(controller.height, targetHeight))
         {
             if (Mathf.Abs(controller.height - targetHeight) > 0.001f)
@@ -69,7 +95,6 @@ public class PlayerController : MonoBehaviour
             controller.center = new Vector3(0, controller.height / 2f, 0);
         }
 
-        // Smooth camera height with snap
         float targetCameraY = isCrouching ? crouchCameraY : standCameraY;
         Vector3 camPos = cameraTransform.localPosition;
 
@@ -81,9 +106,34 @@ public class PlayerController : MonoBehaviour
         cameraTransform.localPosition = camPos;
     }
 
+    void EnterLadder()
+    {
+        currentState = State.Climbing;
+        velocity = Vector3.zero;
+    }
+
+    void ExitLadder()
+    {
+        currentState = State.Walking;
+        isOnLadder = false;
+    }
+
+    // Called by trigger on the ladder object
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ladder"))
+            EnterLadder();
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ladder"))
+            ExitLadder();
+    }
+
     bool CanStandUp()
     {
-        Vector3 castOrigin = transform.position + Vector3.up * controller.height; // Fixed: cast from top of crouched capsule
+        Vector3 castOrigin = transform.position + Vector3.up * controller.height;
         float castDistance = standHeight - crouchHeight;
         return !Physics.SphereCast(castOrigin, controller.radius * 0.9f, Vector3.up, out _, castDistance);
     }

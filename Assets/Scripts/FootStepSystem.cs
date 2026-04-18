@@ -1,52 +1,57 @@
 using UnityEngine;
 
-public enum SurfaceType
-{
-    Snow,
-    Metal,
-    Default
-}
-
 public class FootstepSystem : MonoBehaviour
 {
     public AudioSource audioSource;
-
-    public AudioClip[] snowSteps;
     public float stepInterval = 2.0f;
+    public PlayerController playerController;
+
+    [Header("Surface Sounds")]
+    public AudioClip[] snowSteps;
+    public AudioClip[] metalSteps;
+    public AudioClip[] defaultSteps;
+    public AudioClip[] ladderSteps;
 
     private float timer;
     private bool wasMoving = false;
+    private string currentSurfaceTag = "Untagged";
 
     void Update()
     {
+        bool isClimbing = playerController != null && playerController.currentState == PlayerController.State.Climbing;
+
         bool isMoving = IsMovingInput();
 
-        // START moving
         if (isMoving && !wasMoving)
         {
-            PlayFootstep();
+            PlayFootstep(isClimbing);
             timer = stepInterval;
         }
 
-        // WHILE moving
         if (isMoving)
         {
             timer -= Time.deltaTime;
-
             if (timer <= 0f)
             {
-                PlayFootstep();
+                PlayFootstep(isClimbing);
                 timer = stepInterval;
             }
         }
 
-        // STOP moving
         if (!isMoving && wasMoving)
-        {
-            timer = 0f; // prevent delayed extra step
-        }
+            timer = 0f;
 
         wasMoving = isMoving;
+
+        // Only raycast when not climbing
+        if (!isClimbing)
+            DetectSurface();
+    }
+
+    void DetectSurface()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+            currentSurfaceTag = hit.collider.tag;
     }
 
     bool IsMovingInput()
@@ -57,12 +62,27 @@ public class FootstepSystem : MonoBehaviour
                Input.GetKey(KeyCode.D);
     }
 
-    void PlayFootstep()
+    void PlayFootstep(bool isClimbing)
     {
-        if (snowSteps.Length == 0) return;
+        AudioClip[] clips;
 
-        var clip = snowSteps[Random.Range(0, snowSteps.Length)];
+        if (isClimbing)
+        {
+            clips = ladderSteps;
+        }
+        else
+        {
+            clips = currentSurfaceTag switch
+            {
+                "Snow" => snowSteps,
+                "Metal" => metalSteps,
+                _ => defaultSteps
+            };
+        }
 
+        if (clips == null || clips.Length == 0) return;
+
+        var clip = clips[Random.Range(0, clips.Length)];
         audioSource.pitch = Random.Range(0.95f, 1.05f);
         audioSource.PlayOneShot(clip);
     }

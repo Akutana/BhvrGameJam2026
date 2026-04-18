@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Interactable
   - Snow
+  - Ladder
+  - Metal
   layers:
   - Default
   - TransparentFX
