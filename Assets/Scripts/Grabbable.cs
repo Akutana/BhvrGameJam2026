@@ -7,24 +7,19 @@ public class Grabbable : Interactable
 
     public override void Interact()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        
+        pickedUp = !pickedUp;
+
         if (pickedUp)
         {
-            transform.SetParent(null);
-
-            transform.GetComponent<Rigidbody>().useGravity = true;
-
-            pickedUp = false;
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
-
         else
         {
-            transform.SetParent(pickUpPos.transform);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
-
-            transform.GetComponent<Rigidbody>().useGravity = false;
-
-            pickedUp = true;
+            rb.useGravity = true;
         }
     }
 }
