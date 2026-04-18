@@ -924,10 +924,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 69d5080e-c280-493d-a10e-882435040c46
+  cloudProjectId: c50debbd-a332-419f-b690-f89a24614012
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BehaviourGameJam2026 2026-04-18_00-15-49
+  projectName: BehaviourGameJam2026
   organizationId: akutana
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
