@@ -8,6 +8,8 @@ TagManager:
   - Snow
   - Ladder
   - Metal
+  - TruckTarget
+  - BaseTarget
   layers:
   - Default
   - TransparentFX
