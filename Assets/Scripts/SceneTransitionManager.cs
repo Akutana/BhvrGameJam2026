@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance;
-
-    public Image fadeImage;         // assign a full-screen black UI Image
+    public RawImage fadeImage;
     public float fadeDuration = 1f;
 
     void Awake()
@@ -15,7 +14,8 @@ public class SceneTransitionManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // persists across scenes
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -23,33 +23,45 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
-    // Call this from anywhere to trigger the transition
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(DoFadeIn()); 
+    }
     public void TransitionToScene(string sceneName)
     {
         StartCoroutine(DoTransition(sceneName));
     }
 
+    // Call this on scene start for fade in
+    public void FadeIn()
+    {
+        StartCoroutine(DoFadeIn());
+    }
+
+    IEnumerator DoFadeIn()
+    {
+        yield return StartCoroutine(Fade(1f, 0f));
+    }
+
     IEnumerator DoTransition(string sceneName)
     {
-  
-        yield return StartCoroutine(Fade(fadeDuration)); // fade to black
-
+        yield return StartCoroutine(Fade(0f, 1f));
         SceneManager.LoadScene(sceneName);
     }
 
-    IEnumerator Fade(float targetAlpha)
+    IEnumerator Fade(float from, float to)
     {
-        float startAlpha = fadeImage.color.a;
         float elapsed = 0f;
+        fadeImage.color = new Color(0, 0, 0, from);
 
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            float a = Mathf.Lerp(startAlpha, targetAlpha, elapsed / fadeDuration);
+            float a = Mathf.Lerp(from, to, elapsed / fadeDuration);
             fadeImage.color = new Color(0, 0, 0, a);
             yield return null;
         }
 
-        fadeImage.color = new Color(0, 0, 0, targetAlpha);
+        fadeImage.color = new Color(0, 0, 0, to);
     }
 }

@@ -13,14 +13,23 @@ public class PlayerController : MonoBehaviour
     public float crouchTransitionSpeed = 8f;
     public Transform cameraTransform;
 
+    [Header("Sitting")]
+    public float sitCameraY = 0.8f;
+    public float sitTransitionSpeed = 5f;
+    public bool forcedToSit = false;
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isCrouching = false;
+    private bool isOnLadder = false;
     private float standCameraY;
     private float crouchCameraY;
-    private bool isOnLadder = false;
 
-    public enum State { Walking, Climbing }
+    private bool isSitting = false;
+    private Transform sitPoint;
+    private Transform unsitPoint;
+
+    public enum State { Walking, Climbing, Sitting }
     public State currentState = State.Walking;
 
     void Start()
@@ -37,10 +46,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (currentState == State.Climbing)
-            HandleClimbing();
-        else
-            HandleWalking();
+        switch (currentState)
+        {
+            case State.Climbing: HandleClimbing(); break;
+            case State.Sitting: HandleSitting(); break;
+            default: HandleWalking(); break;
+        }
     }
 
     void HandleWalking()
@@ -62,17 +73,64 @@ public class PlayerController : MonoBehaviour
 
     void HandleClimbing()
     {
-        // Cancel crouch when climbing
         isCrouching = false;
 
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
 
-        // Climb up/down with W/S, strafe on ladder with A/D
         Vector3 climbMove = transform.up * vertical + transform.right * horizontal;
         controller.Move(climbMove * climbingSpeed * Time.deltaTime);
 
-        // Kill gravity while on ladder
+        velocity = Vector3.zero;
+    }
+
+    void HandleSitting()
+    {
+        // Smoothly move camera to sit height
+        Vector3 camPos = cameraTransform.localPosition;
+        camPos.y = Mathf.Lerp(camPos.y, sitCameraY, sitTransitionSpeed * Time.deltaTime);
+        cameraTransform.localPosition = camPos;
+
+        // No movement, only look — camera/mouse is handled by your look script
+
+        if (Input.GetKeyDown(KeyCode.Space) && !forcedToSit)
+            Unsit();
+    }
+
+    // Called by ChairInteractable
+    public void Sit(Transform seatPoint, Transform exitPoint)
+    {
+        if (currentState == State.Sitting) return;
+
+        sitPoint = seatPoint;
+        unsitPoint = exitPoint;
+        currentState = State.Sitting;
+        isCrouching = false;
+
+        // Snap player to seat
+        controller.enabled = false;
+        transform.position = sitPoint.position;
+        transform.rotation = sitPoint.rotation;
+        controller.enabled = true;
+
+        velocity = Vector3.zero;
+    }
+
+    void Unsit()
+    {
+        if (unsitPoint == null) return;
+
+        currentState = State.Walking;
+
+        controller.enabled = false;
+        transform.position = unsitPoint.position;
+        controller.enabled = true;
+
+        // Restore camera to stand height
+        Vector3 camPos = cameraTransform.localPosition;
+        camPos.y = standCameraY;
+        cameraTransform.localPosition = camPos;
+
         velocity = Vector3.zero;
     }
 
@@ -118,7 +176,6 @@ public class PlayerController : MonoBehaviour
         isOnLadder = false;
     }
 
-    // Called by trigger on the ladder object
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ladder"))

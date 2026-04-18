@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class DoorInteractable : Interactable
 {
-    bool canEnterDoor = false;
+    public bool canEnterDoor = false;
     public UnityEvent onEnter;
 
     public override void Interact()
