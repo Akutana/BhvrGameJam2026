@@ -51,23 +51,28 @@ public class PlayerInteraction : MonoBehaviour
 
             if (interactable != null)
             {
+                if (Input.GetKeyDown(interactKey))
+                {
+
+                    if (!heldObject && interactable is Grabbable && interactable.GetComponent<Grabbable>().CanBeGrabbed())
+                        heldObject = interactable;
+                    else return;
+                    interactable.Interact();
+                }
+
                 if (currentInteractable != interactable)
                 {
                     currentInteractable = interactable;
 
+                    if (interactable is Grabbable grabbable && !grabbable.CanBeGrabbed())
+                    {
+                        currentInteractable = null;
+                        interactionTextUI.gameObject.SetActive(false);
+                        return;
+                    }
+
                     string text = GetInteractionText(interactable);
-                    interactionTextUI.text = text; 
-                    
-                    if (!interactionTextUI.gameObject.activeSelf)
-                        interactionTextUI.gameObject.SetActive(true);
-                }
-
-                if (Input.GetKeyDown(interactKey))
-                {
-                    interactable.Interact();
-
-                    if (!heldObject && interactable is Grabbable)
-                        heldObject = interactable;
+                    interactionTextUI.text = text;
                 }
 
                 return;
