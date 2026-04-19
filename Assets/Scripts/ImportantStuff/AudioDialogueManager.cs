@@ -6,31 +6,33 @@ using System;
 public class AudioDialogueManager : MonoBehaviour
 {
     public static AudioDialogueManager Instance;
-
-    public AudioSource audioSource;
-
+    private AudioSource audioSource;
     private Queue<AudioClip> queue = new Queue<AudioClip>();
     private Coroutine routine;
-
-    public Action OnDialogueFinished; 
+    public Action OnDialogueFinished;
 
     void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-
+    // Call this from each SceneDirector's Start()
+    public void SetAudioSource(AudioSource source)
+    {
+        audioSource = source;
+    }
 
     public void PlayDialogue(AudioDialogue dialogue)
     {
-        queue.Clear();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioDialogueManager has no AudioSource assigned.");
+            return;
+        }
 
+        queue.Clear();
         foreach (var clip in dialogue.clips)
             queue.Enqueue(clip);
 
@@ -45,10 +47,8 @@ public class AudioDialogueManager : MonoBehaviour
         while (queue.Count > 0)
         {
             var clip = queue.Dequeue();
-
             audioSource.clip = clip;
             audioSource.Play();
-
             yield return new WaitForSeconds(clip.length);
         }
         OnDialogueFinished?.Invoke();
