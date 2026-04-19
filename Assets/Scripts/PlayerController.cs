@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         camPos.y = Mathf.Lerp(camPos.y, sitCameraY, sitTransitionSpeed * Time.deltaTime);
         cameraTransform.localPosition = camPos;
 
-        // No movement, only look — camera/mouse is handled by your look script
+        // No movement, only look - camera/mouse is handled by your look script
 
         if (Input.GetKeyDown(KeyCode.Space) && !forcedToSit)
             Unsit();

@@ -50,7 +50,8 @@ public class FootstepSystem : MonoBehaviour
 
     void DetectSurface()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+        Vector3 origin = playerController.GetComponent<CharacterController>().bounds.center;
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 2f))
             currentSurfaceTag = hit.collider.tag;
     }
 
