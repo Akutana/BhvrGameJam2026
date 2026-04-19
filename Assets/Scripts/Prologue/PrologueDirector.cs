@@ -7,6 +7,7 @@ public class PrologueDirector : SceneDirector
     public string firstShiftSceneName;
     public AudioClip truckLoopClip;
     public AudioClip truckStartClip;
+    public TargetZone targetZone;
 
     bool playerEnteredTruck = false;
 
@@ -24,13 +25,17 @@ public class PrologueDirector : SceneDirector
         if (!Story.prologueDialoguePlayed)
         {
             Story.prologueDialoguePlayed = true;
-            yield return PlayDialogue(0); // assign prologue dialogue in Inspector
-            truckDoor.setCanEnterDoor(true);
+            yield return PlayDialogue(0); // first dialogue
         }
-        else
-        {
-            truckDoor.setCanEnterDoor(true);
-        }
+
+        // Wait for truck to be fully loaded
+        yield return WaitUntilTrue(() => targetZone.IsComplete());
+
+        // Play dialogue after loading is done
+        yield return PlayDialogue(1); // loading complete dialogue
+
+        // Unlock door after dialogue finishes
+        truckDoor.setCanEnterDoor(true);
 
         yield return WaitUntilTrue(() => playerEnteredTruck);
 

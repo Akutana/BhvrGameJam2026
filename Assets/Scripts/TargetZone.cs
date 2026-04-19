@@ -10,26 +10,18 @@ public class TargetZone : MonoBehaviour
         foreach (Transform targetPoint in transform)
         {
             if (targetPoint.childCount == 0)
-            {
                 return targetPoint;
-            }
         }
-
         return null;
     }
 
-    public void setCanEnterDoor()
+    public void CheckCompletion()
     {
-        if (doorInteractable != null)
-        {
-            Debug.Log("not null");
+        if (IsComplete())
             doorInteractable.setCanEnterDoor(true);
-        }
-
-        else Debug.Log("null");
     }
 
-    public void CheckCompletion()
+    public bool IsComplete()
     {
         int filledCount = 0;
         foreach (Transform targetPoint in transform)
@@ -37,10 +29,6 @@ public class TargetZone : MonoBehaviour
             if (targetPoint.childCount > 0)
                 filledCount++;
         }
-
-        Debug.Log($"Filled: {filledCount} / {requiredItems}");
-
-        if (filledCount >= requiredItems)
-            doorInteractable.setCanEnterDoor(true);
+        return filledCount >= requiredItems;
     }
 }

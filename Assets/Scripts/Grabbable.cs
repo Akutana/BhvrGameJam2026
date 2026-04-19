@@ -28,13 +28,12 @@ public class Grabbable : Interactable
 
     private void OnTriggerStay(Collider other)
     {
-        if (!pickedUp && other.CompareTag("TruckTarget") && (canBeGrabbed == true))
+        if (!pickedUp && other.CompareTag("TruckTarget") && canBeGrabbed)
         {
             canBeGrabbed = false;
             isPlaced = true;
 
             Transform target = other.GetComponent<TargetZone>().GetNextTargetPoint();
-
             if (target != null)
             {
                 transform.SetParent(target, true);
@@ -46,6 +45,7 @@ public class Grabbable : Interactable
             rb.useGravity = false;
             rb.isKinematic = true;
 
+            // Check if all slots are filled instead of checking for next empty slot
             other.GetComponent<TargetZone>().CheckCompletion();
         }
     }

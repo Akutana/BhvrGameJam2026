@@ -155,8 +155,10 @@ MonoBehaviour:
   shakeMagnitude: 0.1
   player: {fileID: 729959123}
   truckDoor: {fileID: 536482456}
-  firstShiftOutsideSceneName: FirtShiftOutside
+  firstShiftOutsideSceneName: FirstShiftOutside
   truckLoopClip: {fileID: 8300000, guid: 10ca6f5e1453b8e4ea1692e586a73990, type: 3}
+  sitPoint: {fileID: 1924881678}
+  exitPoint: {fileID: 192978208}
 --- !u!4 &161634908
 Transform:
   m_ObjectHideFlags: 0
@@ -378,13 +380,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3701521995246171087, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.26
+      value: 1.512
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.z
