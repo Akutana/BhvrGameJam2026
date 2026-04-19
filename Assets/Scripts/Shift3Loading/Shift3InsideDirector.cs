@@ -60,7 +60,7 @@ public class Shift3InsideDirector : SceneDirector
         }
         else
         {
-            // Returning from outside � force sit, call function, final dialogue, load next
+            // Returning from outside force sit, call function, final dialogue, load next
             player.Sit(sitPoint, exitPoint);
             player.forcedToSit = true;
 
