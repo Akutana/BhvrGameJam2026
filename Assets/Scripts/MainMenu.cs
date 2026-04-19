@@ -1,19 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
-    // Fonction appelée quand on clique sur Play
+    public UIFader logoFader; // assign in Inspector
+
     public void PlayGame()
     {
-        // Charge la scène suivante dans l'ordre du jeu
+        StartCoroutine(PlaySequence());
+    }
+
+    IEnumerator PlaySequence()
+    {
+        // Trigger fade
+        logoFader.FadeOut();
+
+        // Wait for fade to finish
+        yield return new WaitForSeconds(logoFader.fadeDuration);
+
+        // Now load scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    // Fonction appelée quand on clique sur Quit
     public void QuitGame()
     {
-        Debug.Log("Le jeu se ferme !"); // Juste pour vérifier dans l'éditeur
+        Debug.Log("Le jeu se ferme !");
         Application.Quit();
     }
 }

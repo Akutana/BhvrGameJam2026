@@ -1453,7 +1453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1046e6845792c04187bf998ff6740d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base3InsideDirector
-  dialogues: []
+  dialogues:
+  - {fileID: 0}
   playerVoiceSource: {fileID: 1234026536}
   cameraTransform: {fileID: 1597040233}
   shakeDuration: 0.5
