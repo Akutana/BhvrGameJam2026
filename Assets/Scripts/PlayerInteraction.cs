@@ -72,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (currentInteractable == interactable)
                     return;
 
-                currentInteractable = interactable;
+                currentInteractable = interactable; 
 
                 if (interactable is Grabbable grabbable2)
                 {
@@ -87,7 +87,9 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 if (interactable.CanBeInteractedWith())
+                {
                     ShowInteractionText(interactable);
+                }
 
                 return;
             }

@@ -8,6 +8,7 @@ public class Shift2InsideDirector : SceneDirector
     public Transform sitPoint;
     public Transform exitPoint;
     public TapeInteractable tape;
+    public Shift2FuelJerricanInteractable fuelJerrican;
     public string outsideSceneName;
 
     bool playerExited = false;
@@ -33,11 +34,16 @@ public class Shift2InsideDirector : SceneDirector
             yield return PlayDialogue(0); // in-truck dialogue
             player.forcedToSit = false;
         }
-        else
+        else if (!Story.shift2HasTape)
         {
             // ── Second visit: player came back to get tape ───────────
             tape.gameObject.SetActive(true);
             yield return WaitUntilTrue(() => Story.shift2HasTape);
+        }
+        else
+        {
+            fuelJerrican.gameObject.SetActive(true);
+            yield return WaitUntilTrue(() => Story.shift2HasFuelJerrican);
         }
 
         truckDoor.setCanEnterDoor(true);

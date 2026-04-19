@@ -44,6 +44,8 @@ public class StoryState
     public bool shift2FuelTankDone = false;
     public bool shift2FuelDialoguePlayed = false;
     public bool shift2Done = false;
+    public bool shift2HasFuelJerrican = false;
+    public bool shift2FuelTankRefilled = false;
 
     // Add more shifts here as you go
 }

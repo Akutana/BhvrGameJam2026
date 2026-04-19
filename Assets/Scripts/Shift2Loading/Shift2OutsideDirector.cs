@@ -49,10 +49,11 @@ public class Shift2OutsideDirector : SceneDirector
 
             GoToScene(insideSceneName);
         }
-        else
+        else if (Story.shift2HasTape && !Story.shift2HasFuelJerrican)
         {
             // ── Second visit (returning with tape) ───────────────────
-
+            
+            exitTrigger.gameObject.SetActive(false);
             fuelTank.gameObject.SetActive(true);
 
             yield return WaitUntilTrue(() => Story.shift2FuelTankDone);
@@ -64,6 +65,16 @@ public class Shift2OutsideDirector : SceneDirector
                 Story.shift2FuelDialoguePlayed = true;
                 yield return PlayDialogue(1); // post-fuel dialogue
             }
+
+            truckDoor.setCanEnterDoor(true);
+            yield return WaitUntilTrue(() => playerEnteredTruck);
+
+            GoToScene(insideSceneName);
+        }
+        else if (Story.shift2HasFuelJerrican)
+        {
+            exitTrigger.gameObject.SetActive(false);
+            fuelTank.gameObject.SetActive(true);
 
             if (objectToMove != null && objectMoveTarget != null)
             {
