@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27c0b08969983cf47a5dc8407616d620, type: 3}
-  m_Name: Outside
+  m_Name: Audio5
   m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
   clips:
-  - {fileID: 8300000, guid: 3a66c39c3ce42fb46af67dd8e8755f68, type: 3}
-  - {fileID: 8300000, guid: 8e3de2ac86767374e99cb5555687e5de, type: 3}
-  - {fileID: 8300000, guid: 089b06be800f40542bff07a8ee16ab85, type: 3}
-  - {fileID: 8300000, guid: 6504eee169e63ab4dae0cfb5b9fafb39, type: 3}
+  - {fileID: 8300000, guid: 8960260eebc91d64a80d5f6377b1dfc9, type: 3}
+  - {fileID: 8300000, guid: 9728b0e2287c23c45bdcb2f5955c6e04, type: 3}
+  - {fileID: 8300000, guid: 8a11aeffc3fe98843b526f64be5f0b19, type: 3}
+  - {fileID: 8300000, guid: b1a8091ad25b13c4ba548ebef210845e, type: 3}
+  - {fileID: 8300000, guid: 67475f22b4345d443a1c3ed7280454f3, type: 3}

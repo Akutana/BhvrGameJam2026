@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c0b08969983cf47a5dc8407616d620, type: 3}
+  m_Name: Audio6
+  m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
+  clips:
+  - {fileID: 8300000, guid: 9e99753d80ed581479e00e5b5cc441a7, type: 3}
+  - {fileID: 8300000, guid: d994d5b7c097d644d96cf005c2cdc01b, type: 3}
+  - {fileID: 8300000, guid: fe4593f9a163c5a499a34ec61aa1138a, type: 3}
+  - {fileID: 8300000, guid: 0d4b76531a7055e439050b59661cba32, type: 3}
+  - {fileID: 8300000, guid: 6e9535df35fbd7d45bd04104db699a6d, type: 3}
+  - {fileID: 8300000, guid: 2f3259c65cfad0c41886db00b1a36f2e, type: 3}
+  - {fileID: 8300000, guid: 2f3259c65cfad0c41886db00b1a36f2e, type: 3}

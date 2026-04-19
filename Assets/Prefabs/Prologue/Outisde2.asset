@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Outisde2
   m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
   clips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: c3950487479a7ba468479451d091b6e1, type: 3}
+  - {fileID: 8300000, guid: 48c03d7a090e0984cafda2032991e9a9, type: 3}
+  - {fileID: 8300000, guid: 9c9b5d1afa9338841aa7a5737c21341a, type: 3}
+  - {fileID: 8300000, guid: 50f7ac2fc89438f4787c9f35234773af, type: 3}
+  - {fileID: 8300000, guid: 9f7a4a021dbf52548b913b7d04cedba4, type: 3}

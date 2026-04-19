@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FogMode: 2
+  m_FogDensity: 0.206
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -148,7 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3e041f8937ed849a1c9581cf184c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstShiftInsideDirector
-  dialogues: []
+  dialogues:
+  - {fileID: 11400000, guid: 65e9c06db9829eb42af8ceff7a846b31, type: 2}
+  - {fileID: 11400000, guid: e67f4fd6ef1111b4fbc69a5513dc451d, type: 2}
+  - {fileID: 11400000, guid: 3a669e8a88b95354b90187c2166fb9e8, type: 2}
+  - {fileID: 11400000, guid: 3445bb10c3e786842b13b8d2477c23c2, type: 2}
+  - {fileID: 11400000, guid: cd9da510b6d8c4543a10bbe82ad52716, type: 2}
+  - {fileID: 11400000, guid: 98bae336cb18d0e4bbe19c7b7ffb1707, type: 2}
   playerVoiceSource: {fileID: 1204814277}
   cameraTransform: {fileID: 1519199768}
   shakeDuration: 0.5
@@ -422,7 +428,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 120.68412, y: 1, z: 19.17836}
+  m_LocalScale: {x: 120.68412, y: 1, z: 52.017467}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

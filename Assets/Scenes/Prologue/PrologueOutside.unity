@@ -2100,6 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrologueOutsideDirector
   dialogues:
   - {fileID: 11400000, guid: 6feb805fc5256e64b82ea72f50db857a, type: 2}
+  - {fileID: 11400000, guid: be54ce178fb565f4983d403ddf7918cf, type: 2}
   playerVoiceSource: {fileID: 72168553}
   cameraTransform: {fileID: 94916354}
   shakeDuration: 0.5
