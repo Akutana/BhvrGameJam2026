@@ -6,8 +6,6 @@ public class FootstepSystem : MonoBehaviour
     public float stepInterval = 2.0f;
     public PlayerController playerController;
 
-    private CharacterController controller;
-
     [Header("Surface Sounds")]
     public AudioClip[] snowSteps;
     public AudioClip[] metalSteps;
@@ -17,16 +15,16 @@ public class FootstepSystem : MonoBehaviour
     private float timer;
     private bool wasMoving = false;
     private string currentSurfaceTag = "Untagged";
+    private CharacterController controller;
 
     void Start()
     {
-        controller = GetComponentInParent<CharacterController>();
+        controller = playerController.GetComponent<CharacterController>();
     }
 
     void Update()
     {
         bool isClimbing = playerController != null && playerController.currentState == PlayerController.State.Climbing;
-
         bool isMoving = IsMovingInput();
 
         if (isMoving && !wasMoving)
@@ -50,24 +48,15 @@ public class FootstepSystem : MonoBehaviour
 
         wasMoving = isMoving;
 
-        // Only raycast when not climbing
         if (!isClimbing)
             DetectSurface();
     }
 
     void DetectSurface()
     {
-        Vector3 origin = transform.position + Vector3.up * controller.height * 0.5f;
-        Debug.DrawRay(origin, Vector3.down * (controller.height + 0.5f), Color.red);
-
-        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, controller.height + 0.5f))
-        {
+        Vector3 origin = controller.bounds.center;
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 2f))
             currentSurfaceTag = hit.collider.tag;
-        }
-        else
-        {
-            Debug.Log("Raycast hit nothing");
-        }
     }
 
     bool IsMovingInput()
@@ -80,21 +69,12 @@ public class FootstepSystem : MonoBehaviour
 
     void PlayFootstep(bool isClimbing)
     {
-        AudioClip[] clips;
-
-        if (isClimbing)
+        AudioClip[] clips = isClimbing ? ladderSteps : currentSurfaceTag switch
         {
-            clips = ladderSteps;
-        }
-        else
-        {
-            clips = currentSurfaceTag switch
-            {
-                "Snow" => snowSteps,
-                "Metal" => metalSteps,
-                _ => defaultSteps
-            };
-        }
+            "Snow" => snowSteps,
+            "Metal" => metalSteps,
+            _ => defaultSteps
+        };
 
         if (clips == null || clips.Length == 0) return;
 
