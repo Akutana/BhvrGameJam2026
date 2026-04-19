@@ -3,28 +3,63 @@ using UnityEngine;
 public class Grabbable : Interactable
 {
     public GameObject pickUpPos;
-    private bool pickedUp = false;
+    private bool pickedUp = false; 
+    private bool canBeGrabbed = true; 
+    private bool isPlaced = false;
 
     public override void Interact()
     {
+        if (!canBeGrabbed)
+            return;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        
+        pickedUp = !pickedUp;
+
         if (pickedUp)
         {
-            transform.SetParent(null);
-
-            transform.GetComponent<Rigidbody>().useGravity = true;
-
-            pickedUp = false;
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
-
         else
+            rb.useGravity = true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!pickedUp && other.CompareTag("TruckTarget") && canBeGrabbed)
         {
-            transform.SetParent(pickUpPos.transform);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
+            canBeGrabbed = false;
+            isPlaced = true;
 
-            transform.GetComponent<Rigidbody>().useGravity = false;
+            Transform target = other.GetComponent<TargetZone>().GetNextTargetPoint();
+            if (target != null)
+            {
+                transform.SetParent(target, true);
+                transform.position = target.position;
+                transform.rotation = target.rotation;
+            }
 
-            pickedUp = true;
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.isKinematic = true;
+
+            // Check if all slots are filled instead of checking for next empty slot
+            other.GetComponent<TargetZone>().CheckCompletion();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("TruckTarget") && !isPlaced)
+        {
+            canBeGrabbed = true;
+        }
+    }
+
+    public bool CanBeGrabbed()
+    {
+        return canBeGrabbed;
     }
 }

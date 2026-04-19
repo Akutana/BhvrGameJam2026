@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Interactable
+  - Snow
+  - Ladder
+  - Metal
+  - TruckTarget
+  - BaseTarget
   layers:
   - Default
   - TransparentFX

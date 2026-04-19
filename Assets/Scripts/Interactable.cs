@@ -8,4 +8,9 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log("Interaction with " + gameObject.name);
     }
+
+    public virtual bool CanBeInteractedWith()
+    {
+        return true;
+    }
 }

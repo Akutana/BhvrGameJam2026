@@ -4,19 +4,33 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public Camera cam;
-    public float range = 10f;
-
+    public float range = 15f;
     private Interactable currentInteractable;
     public KeyCode interactKey = KeyCode.E;
-
     public TextMeshProUGUI interactionTextUI;
-
     private Interactable heldObject;
+    public float holdDistance = 2f;
+    public float moveSpeed = 10f;
+
+    void Start()
+    {
+        interactionTextUI = PersistentServices.Instance.interactionText;
+        interactionTextUI.gameObject.SetActive(false);
+        currentInteractable = null;
+        heldObject = null;
+    }
 
     void Update()
     {
+        if (cam == null || interactionTextUI == null) return;
+
         if (heldObject != null)
         {
+            Transform obj = heldObject.transform;
+            Vector3 targetPos = cam.transform.position + cam.transform.forward * holdDistance;
+            obj.position = Vector3.Lerp(obj.position, targetPos, Time.deltaTime * moveSpeed);
+            obj.rotation = Quaternion.Lerp(obj.rotation, cam.transform.rotation, Time.deltaTime * moveSpeed);
+
             if (Input.GetKeyDown(interactKey))
             {
                 heldObject.Interact();
@@ -26,7 +40,6 @@ public class PlayerInteraction : MonoBehaviour
             interactionTextUI.text = $"Drop [{interactKey}]";
             if (!interactionTextUI.gameObject.activeSelf)
                 interactionTextUI.gameObject.SetActive(true);
-
             return;
         }
 
@@ -39,24 +52,42 @@ public class PlayerInteraction : MonoBehaviour
 
             if (interactable != null)
             {
-                if (currentInteractable != interactable)
-                {
-                    currentInteractable = interactable;
-
-                    string text = GetInteractionText(interactable);
-                    interactionTextUI.text = text; 
-                    
-                    if (!interactionTextUI.gameObject.activeSelf)
-                        interactionTextUI.gameObject.SetActive(true);
-                }
-
                 if (Input.GetKeyDown(interactKey))
                 {
-                    interactable.Interact();
-
-                    if (!heldObject && interactable is Grabbable)
+                    if (!heldObject && interactable is Grabbable grabbable && grabbable.CanBeGrabbed())
+                    {
                         heldObject = interactable;
+                        interactable.Interact();
+                    }
+                    else if (interactable is not Grabbable)
+                    {
+                        interactable.Interact();
+                        currentInteractable = null;
+                        heldObject = null;
+                        interactionTextUI.gameObject.SetActive(false);
+                    }
+                    return;
                 }
+
+                if (currentInteractable == interactable)
+                    return;
+
+                currentInteractable = interactable;
+
+                if (interactable is Grabbable grabbable2)
+                {
+                    if (!grabbable2.CanBeGrabbed())
+                    {
+                        currentInteractable = null;
+                        interactionTextUI.gameObject.SetActive(false);
+                        return;
+                    }
+                    ShowInteractionText(interactable);
+                    return;
+                }
+
+                if (interactable.CanBeInteractedWith())
+                    ShowInteractionText(interactable);
 
                 return;
             }
@@ -69,5 +100,12 @@ public class PlayerInteraction : MonoBehaviour
     string GetInteractionText(Interactable interactable)
     {
         return $"{interactable.interactionText} [{interactKey}]";
+    }
+
+    void ShowInteractionText(Interactable interactable)
+    {
+        interactionTextUI.text = GetInteractionText(interactable);
+        if (!interactionTextUI.gameObject.activeSelf)
+            interactionTextUI.gameObject.SetActive(true);
     }
 }
