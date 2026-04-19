@@ -15,14 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Prologue/FirstShiftOutside.unity
     guid: f31e970ec57165c4cbb26f561dd5ab5a
   - enabled: 1
-    path: Assets/Scenes/Prologue/Prologue.unity
-    guid: 9b269e8528b38d94cb0e348aebefc04b
-  - enabled: 1
     path: Assets/Scenes/Shift 2/Shift2Loading.unity
     guid: 78c6b218d31080e4fb528fd3b83541bd
   - enabled: 1
+    path: Assets/Scenes/Shift 2/Shift2Driving.unity
+    guid: 848a71e5103e231419aae7878de2e701
+  - enabled: 1
+    path: Assets/Scenes/Shift 2/Shift2Outside.unity
+    guid: 5ee97dfa5880c0e45b444bc3021d6a1f
+  - enabled: 1
     path: Assets/Scenes/Shift 2/Shift2Inside.unity
     guid: 1792c0bf66dfd804a92a111f92146b07
+  - enabled: 1
+    path: Assets/Scenes/Shift 2/Shift2Cab.unity
+    guid: c6028961f2696fe40b7bcead1332af2e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

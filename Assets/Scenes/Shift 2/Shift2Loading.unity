@@ -877,6 +877,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+--- !u!114 &279980853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2027598993893350906, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+  m_PrefabInstance: {fileID: 279980852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d63d2cf333d81d4fba406a8bd0385f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetZone
 --- !u!1 &514380210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,10 +1204,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 814675858}
   shakeDuration: 0.5
   shakeMagnitude: 0.1
+  targetZone: {fileID: 279980853}
   truckDoor: {fileID: 38898154}
-  firstShiftSceneName: Shift2Inside
-  truckLoopClip: {fileID: 8300000, guid: d225655600bf78d4eb3c68aa6b780689, type: 3}
-  truckStartClip: {fileID: 8300000, guid: bd56a2add0e2c2e43a418c356614ac22, type: 3}
+  drivingSceneName: Shift2Driving
 --- !u!1 &752532185
 GameObject:
   m_ObjectHideFlags: 0

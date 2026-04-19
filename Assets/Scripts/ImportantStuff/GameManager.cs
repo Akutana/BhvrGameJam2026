@@ -31,5 +31,19 @@ public class StoryState
     public bool firstShiftTruckInspected = false;
     public bool firstShiftOutsideDone = false;
 
+    // Second shift - loading
+    public bool shift2IntroPlayed = false;
+    public bool shift2TruckLoaded = false;
+
+    // Second shift - driving
+    public bool shift2DrivingDialoguePlayed = false;
+
+    // Second shift - outside
+    public bool shift2OutsideDialoguePlayed = false;
+    public bool shift2HasTape = false;
+    public bool shift2FuelTankDone = false;
+    public bool shift2FuelDialoguePlayed = false;
+    public bool shift2Done = false;
+
     // Add more shifts here as you go
 }

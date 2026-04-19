@@ -304,14 +304,9 @@ MonoBehaviour:
     firstShiftOutsideIntroPlayed: 0
     firstShiftTruckInspected: 0
     firstShiftOutsideDone: 0
-    shift2IntroPlayed: 0
-    shift2TruckLoaded: 0
-    shift2DrivingDialoguePlayed: 0
-    shift2OutsideDialoguePlayed: 0
-    shift2HasTape: 0
-    shift2FuelTankDone: 0
-    shift2FuelDialoguePlayed: 0
-    shift2Done: 0
+    secondShiftLoadingIntroPlayed: 0
+    secondShiftInsideIntroPlayer: 0
+    secondShift: 0
 --- !u!4 &343885698
 Transform:
   m_ObjectHideFlags: 0
@@ -1066,7 +1061,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeMagnitude: 0.1
   truckDoor: {fileID: 1817651871}
-  firstShiftSceneName: Shift2Loading
+  firstShiftSceneName: FirstShiftOutside
   truckLoopClip: {fileID: 8300000, guid: 10ca6f5e1453b8e4ea1692e586a73990, type: 3}
   truckStartClip: {fileID: 8300000, guid: 65a22f15bde232c4aa155f640ed0c36c, type: 3}
   targetZone: {fileID: 293957361}

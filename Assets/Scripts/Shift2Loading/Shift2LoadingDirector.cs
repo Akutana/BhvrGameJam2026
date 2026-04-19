@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class Shift2LoadingDirector : SceneDirector
 {
+    public TargetZone targetZone;
     public DoorInteractable truckDoor;
-    public string firstShiftSceneName;
-    public AudioClip truckLoopClip;
-    public AudioClip truckStartClip;
+    public string drivingSceneName;
 
     bool playerEnteredTruck = false;
 
@@ -21,19 +20,18 @@ public class Shift2LoadingDirector : SceneDirector
     {
         yield return WaitForFade();
 
-        //if (!Story.prologueDialoguePlayed)
-        //{
-        //    Story.prologueDialoguePlayed = true;
-        //    truckDoor.setCanEnterDoor(true);
-        //}
-        //else
-        //{
-        //    truckDoor.setCanEnterDoor(true);
-        //}
+        if (!Story.shift2IntroPlayed)
+        {
+            Story.shift2IntroPlayed = true;
+            yield return PlayDialogue(0); // intro dialogue
+        }
 
+        yield return WaitUntilTrue(() => targetZone.IsComplete());
+        Story.shift2TruckLoaded = true;
+
+        truckDoor.setCanEnterDoor(true);
         yield return WaitUntilTrue(() => playerEnteredTruck);
 
-        PersistentServices.Instance.PlaySFX(truckStartClip);
-        GoToScene(firstShiftSceneName);
+        GoToScene(drivingSceneName);
     }
 }
