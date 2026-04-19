@@ -21,6 +21,7 @@ public class StoryState
     // Prologue
     public bool prologueDialoguePlayed = false;
     public bool prologueDone = false;
+    public bool prologueOutsideDone = false;
 
     // First shift - inside
     public bool firstShiftIntroPlayed = false;

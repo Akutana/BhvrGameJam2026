@@ -27,7 +27,7 @@ public class FirstShiftOutsideDirector : SceneDirector
     {
         yield return WaitForFade();
 
-        if (!Story.firstShiftTruckInspected && !Story.firstShiftOutsideIntroPlayed)
+        if (!Story.firstShiftTruckInspected)
         {
             yield return WaitUntilTrue(() => investigationComplete);
             yield return PlayDialogue(0); // investigation complete dialogue
