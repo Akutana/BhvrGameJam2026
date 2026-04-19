@@ -5,13 +5,25 @@ public class Shift2OutsideDirector : SceneDirector
 {
     public DoorInteractable truckDoor;
     public Shift2ExitTrigger exitTrigger;
+
+    [Header("Fuel Tank")]
     public FuelTankInteractable fuelTank;
     public AudioClip fuelSFX;
     public GameObject objectToMove;
     public Transform objectMoveTarget;
+
+    [Header("Final Outside")]
     public Shift2EndTrigger endTrigger;
-    public AudioSource playerWalkSource;
-    public float walkSoundDoubleDelay = 0.5f;
+    public Shift2GenericInteractable objectA;
+    public Shift2GenericInteractable objectB; 
+    
+    [Header("Final Target Zone")]
+    public TargetZone finalTargetZone;
+
+    [Header("Third Visit - Moving Sounds")]
+    public Shift2MovingSoundTrigger movingSoundTrigger1;
+    public Shift2MovingSoundTrigger movingSoundTrigger2;
+
     public string insideSceneName;
     public string nextShiftSceneName;
 
@@ -23,6 +35,10 @@ public class Shift2OutsideDirector : SceneDirector
         truckDoor.onEnter.AddListener(() => playerEnteredTruck = true);
         fuelTank.gameObject.SetActive(false);
         endTrigger.gameObject.SetActive(false);
+        objectA.gameObject.SetActive(false);
+        objectB.gameObject.SetActive(false);
+        movingSoundTrigger1.gameObject.SetActive(false);
+        movingSoundTrigger2.gameObject.SetActive(false);
         base.Start();
     }
 
@@ -32,64 +48,78 @@ public class Shift2OutsideDirector : SceneDirector
 
         if (!Story.shift2HasTape)
         {
-            // ── First visit ──────────────────────────────────────────
-
-            // Wait for player to reach the exit trigger zone
+            // ── First visit: reach exit trigger → dialogue → enter truck ─
             yield return WaitUntilTrue(() => exitTrigger.reached);
 
             if (!Story.shift2OutsideDialoguePlayed)
             {
                 Story.shift2OutsideDialoguePlayed = true;
-                yield return PlayDialogue(0); // outside dialogue
+                yield return PlayDialogue(0);
             }
 
-            // Send player to cab to get tape
             truckDoor.setCanEnterDoor(true);
             yield return WaitUntilTrue(() => playerEnteredTruck);
-
             GoToScene(insideSceneName);
         }
-        else if (Story.shift2HasTape && !Story.shift2HasFuelJerrican)
+        else if (!Story.shift2FuelTankDone)
         {
-            // ── Second visit (returning with tape) ───────────────────
-            
+            // ── Second visit: tape in hand → interact fuel tank ──────────
             exitTrigger.gameObject.SetActive(false);
             fuelTank.gameObject.SetActive(true);
 
             yield return WaitUntilTrue(() => Story.shift2FuelTankDone);
 
             PersistentServices.Instance.PlaySFX(fuelSFX);
-
-            if (!Story.shift2FuelDialoguePlayed)
-            {
-                Story.shift2FuelDialoguePlayed = true;
-                yield return PlayDialogue(1); // post-fuel dialogue
-            }
-
-            truckDoor.setCanEnterDoor(true);
-            yield return WaitUntilTrue(() => playerEnteredTruck);
-
-            GoToScene(insideSceneName);
-        }
-        else if (Story.shift2HasFuelJerrican)
-        {
-            exitTrigger.gameObject.SetActive(false);
-            fuelTank.gameObject.SetActive(true);
-
             if (objectToMove != null && objectMoveTarget != null)
             {
                 objectToMove.transform.position = objectMoveTarget.position;
                 objectToMove.transform.rotation = objectMoveTarget.rotation;
             }
 
-            endTrigger.gameObject.SetActive(true);
-            yield return WaitUntilTrue(() => endTrigger.reached);
+            if (!Story.shift2FuelDialoguePlayed)
+            {
+                Story.shift2FuelDialoguePlayed = true;
+                yield return PlayDialogue(1);
+            }
 
-            yield return new WaitForSeconds(walkSoundDoubleDelay);
-            if (playerWalkSource != null)
-                playerWalkSource.volume *= 2f;
+            truckDoor.setCanEnterDoor(true);
+            yield return WaitUntilTrue(() => playerEnteredTruck);
+            GoToScene(insideSceneName);
+        }
+        else if (!Story.shift2FuelTankRefilled)
+        {
+            // ── Third visit: jerrican in hand → refill fuel tank → moving sounds → enter truck ─
+            exitTrigger.gameObject.SetActive(false);
+            fuelTank.gameObject.SetActive(true);
 
-            Story.shift2Done = true;
+            yield return WaitUntilTrue(() => Story.shift2FuelTankRefilled);
+
+            movingSoundTrigger1.gameObject.SetActive(true);
+            yield return WaitUntilTrue(() => Story.shift2MovingSound1Done);
+
+            movingSoundTrigger2.gameObject.SetActive(true);
+            yield return WaitUntilTrue(() => Story.shift2MovingSound2Done);
+
+            truckDoor.setCanEnterDoor(true);
+            yield return WaitUntilTrue(() => playerEnteredTruck);
+            GoToScene(insideSceneName);
+        }
+        else if (!Story.shift2FinalInsideDialoguePlayed)
+        {
+            // ── Fourth visit: waiting for inside scene to handle dialogue/fade ─
+            // Nothing to do outside, director just sent player to inside scene
+            // This branch should never actually run; GoToScene fires immediately
+        }
+        else
+        {
+            // ── Fifth visit: final target zone ───────────────────────────────
+            exitTrigger.gameObject.SetActive(false);
+
+            yield return PlayDialogue(3);
+
+            yield return WaitUntilTrue(() => finalTargetZone.IsComplete());
+            Story.shift2FinalTruckLoaded = true;
+
             GoToScene(nextShiftSceneName);
         }
     }
