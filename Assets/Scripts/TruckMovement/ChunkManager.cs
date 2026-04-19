@@ -5,11 +5,12 @@ public class ChunkManager : MonoBehaviour
 {
     public List<Transform> chunks;
 
-    public float chunkLength = 100f;
+    public float chunkLength = 10f;
     public Transform truck;
 
     void Update()
     {
+        MoveChunks();
         RecycleChunks();
     }
 
@@ -42,5 +43,18 @@ public class ChunkManager : MonoBehaviour
         }
 
         return maxZ;
+    }
+
+    void MoveChunks()
+    {
+        float speed = DriveManager.Instance.speed;
+
+        if (!DriveManager.Instance.isDriving)
+            return;
+
+        foreach (Transform chunk in chunks)
+        {
+            chunk.Translate(Vector3.back * speed * Time.deltaTime);
+        }
     }
 }
