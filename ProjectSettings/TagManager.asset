@@ -9,7 +9,8 @@ TagManager:
   - Ladder
   - Metal
   - TruckTarget
-  - BaseTarget
+  - ' BaseTarget'
+  - Toggle
   layers:
   - Default
   - TransparentFX
