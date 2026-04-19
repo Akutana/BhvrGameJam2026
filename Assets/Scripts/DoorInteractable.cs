@@ -15,6 +15,7 @@ public class DoorInteractable : Interactable
 
     public void setCanEnterDoor(bool value)
     {
+        Debug.Log("setCanEnterDoor " + value);
         canEnterDoor = value;
         interactionText = "Enter truck";
     }

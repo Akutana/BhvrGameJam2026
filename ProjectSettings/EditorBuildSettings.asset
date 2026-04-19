@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/Scenes/Prologue/FirstShiftInside.unity
     guid: f004537575ce42642b3154505834ec68
+  - enabled: 1
+    path: Assets/Scenes/Prologue/Prologue.unity
+    guid: 9b269e8528b38d94cb0e348aebefc04b
+  - enabled: 1
+    path: Assets/Scenes/Shift 2/Shift2Loading.unity
+    guid: 78c6b218d31080e4fb528fd3b83541bd
+  - enabled: 1
+    path: Assets/Scenes/Shift 2/Shift2Inside.unity
+    guid: 1792c0bf66dfd804a92a111f92146b07
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -46,8 +46,7 @@ public class Grabbable : Interactable
             rb.useGravity = false;
             rb.isKinematic = true;
 
-            if (other.GetComponent<TargetZone>().GetNextTargetPoint())
-                other.GetComponent<TargetZone>().setCanEnterDoor();
+            other.GetComponent<TargetZone>().CheckCompletion();
         }
     }
 

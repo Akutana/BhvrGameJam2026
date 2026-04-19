@@ -3,6 +3,7 @@ using UnityEngine;
 public class TargetZone : MonoBehaviour
 {
     public DoorInteractable doorInteractable;
+    public int requiredItems = 4;
 
     public Transform GetNextTargetPoint()
     {
@@ -25,6 +26,21 @@ public class TargetZone : MonoBehaviour
             doorInteractable.setCanEnterDoor(true);
         }
 
-        Debug.Log("null");
+        else Debug.Log("null");
+    }
+
+    public void CheckCompletion()
+    {
+        int filledCount = 0;
+        foreach (Transform targetPoint in transform)
+        {
+            if (targetPoint.childCount > 0)
+                filledCount++;
+        }
+
+        Debug.Log($"Filled: {filledCount} / {requiredItems}");
+
+        if (filledCount >= requiredItems)
+            doorInteractable.setCanEnterDoor(true);
     }
 }

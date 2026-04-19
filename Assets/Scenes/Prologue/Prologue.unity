@@ -482,10 +482,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7722329367538217474, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
-      propertyPath: interactionTextUI
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -805,7 +801,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeMagnitude: 0.1
   truckDoor: {fileID: 1817651871}
-  firstShiftSceneName: FirstShiftInside
+  firstShiftSceneName: Shift2Loading
   truckLoopClip: {fileID: 8300000, guid: d225655600bf78d4eb3c68aa6b780689, type: 3}
   truckStartClip: {fileID: 8300000, guid: cf2b01943bccb404380abee0ae38d43e, type: 3}
 --- !u!4 &1232886841
