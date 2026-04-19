@@ -28,4 +28,20 @@ public class DriveManager : MonoBehaviour
         isDriving = true;
         speed = defaultSpeed;
     }
+
+        void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ToggleDriving();
+        }
+    }
+
+    void ToggleDriving()
+    {
+        if (isDriving)
+            StopDriving();
+        else
+            StartDriving();
+    }
 }
