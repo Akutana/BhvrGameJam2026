@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77080329777a4334aa2fbf398e18376f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersistentServices
+  interactionText: {fileID: 2131017549}
   fadeImage: {fileID: 1080478566}
   fadeDuration: 1
   sfxSource: {fileID: 1219621150}
@@ -443,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 702.7657
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -451,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -199
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -484,9 +485,8 @@ PrefabInstance:
     - target: {fileID: 7722329367538217474, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: interactionTextUI
       value: 
-      objectReference: {fileID: 2131017549}
-    m_RemovedComponents:
-    - {fileID: 2919043150492585408, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -516,11 +516,12 @@ Transform:
   m_GameObject: {fileID: 992654635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 702.55664, y: -0, z: -196.92897}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293418380}
+  - {fileID: 1817651870}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1065407954
@@ -1145,12 +1146,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817651866}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 703.5628, y: -1.92, z: -187.07272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.92, z: 8.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 992654636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1817651871
 MonoBehaviour:
@@ -1316,5 +1317,4 @@ SceneRoots:
   - {fileID: 955202439}
   - {fileID: 992654636}
   - {fileID: 1065407956}
-  - {fileID: 1817651870}
   - {fileID: 1232886841}
