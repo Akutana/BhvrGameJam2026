@@ -32,6 +32,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shift 3/Shift3Outside.unity
     guid: 1e49a34bc4104be409afbb9c150953f8
+  - enabled: 1
+    path: Assets/Scenes/Base3/Base3Outside.unity
+    guid: 4d8770c068d03504e8638aa37ada949d
+  - enabled: 1
+    path: Assets/Scenes/Base3/Base3Inside.unity
+    guid: df63ed66ba29b9c41a60e59a18cc2982
+  - enabled: 1
+    path: Assets/Scenes/Final/FinalInside.unity
+    guid: 53089c456d2cb074cae161eda6fce98b
+  - enabled: 1
+    path: Assets/Scenes/Final/FinalOutside.unity
+    guid: cc2ff388818a6a043a61db0efb46ed76
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

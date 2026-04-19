@@ -35,4 +35,6 @@ public class StoryState
     public bool shift3InsideDone = false;
     // Third shift - outside
     public bool shift3OutsideDone = false;
+
+    public bool base3OutsideDone = false;
 }
