@@ -14,14 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
   clips:
   - {fileID: 8300000, guid: 04b9b7033e7217141a2a2881d2ae80fb, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 40ba83861db046542b8edb3a5c2ef7cb, type: 3}
   - {fileID: 8300000, guid: 477d0c77e12140343ad0ec4bcbb17119, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 199985644c3710c42b9dafe5cf38adfd, type: 3}
   - {fileID: 8300000, guid: 8ac2402212e854647b520974f4c2eaab, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: e326653d3c2f32c44a885ce0bfff40fc, type: 3}
   - {fileID: 8300000, guid: a587a17f9e3985e48b19fceffa24ba76, type: 3}
   - {fileID: 8300000, guid: 27a94bcec9d6f504d8bb36d830a5c4cd, type: 3}
-  - {fileID: 0}
   - {fileID: 8300000, guid: eba36d66f2421c24f871ca6bbc90008b, type: 3}
-  - {fileID: 0}
   - {fileID: 8300000, guid: 28efcad0b3fe11e4790beaa5d16862ed, type: 3}

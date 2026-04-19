@@ -1070,7 +1070,7 @@ Transform:
   m_GameObject: {fileID: 1134866186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.79544, y: -4.41, z: 4.64813}
+  m_LocalPosition: {x: 217.7, y: -4.41, z: 126.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   engineLoopClip: {fileID: 8300000, guid: 10ca6f5e1453b8e4ea1692e586a73990, type: 3}
   movingObject: {fileID: 93432663}
   objectDestination: {fileID: 1134866187}
-  moveSpeed: 1
+  moveSpeed: 10
 --- !u!4 &1232886841
 Transform:
   m_ObjectHideFlags: 0

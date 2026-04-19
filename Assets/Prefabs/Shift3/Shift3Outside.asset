@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c0b08969983cf47a5dc8407616d620, type: 3}
   m_Name: Shift3Outside
   m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
-  clips:
-  - {fileID: 0}
-  - {fileID: 0}
+  clips: []
