@@ -31,5 +31,8 @@ public class StoryState
     public bool firstShiftTruckInspected = false;
     public bool firstShiftOutsideDone = false;
 
-    // Add more shifts here as you go
+    // Third shift - inside
+    public bool shift3InsideDone = false;
+    // Third shift - outside
+    public bool shift3OutsideDone = false;
 }
