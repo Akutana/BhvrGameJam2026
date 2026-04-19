@@ -27,21 +27,11 @@ public class FirstShiftOutsideDirector : SceneDirector
     {
         yield return WaitForFade();
 
-        if (!Story.firstShiftOutsideIntroPlayed)
-        {
-            Story.firstShiftOutsideIntroPlayed = true;
-            yield return PlayDialogue(0); // arrival dialogue
-        }
-
-        if (!Story.firstShiftTruckInspected)
+        if (!Story.firstShiftTruckInspected && !Story.firstShiftOutsideIntroPlayed)
         {
             yield return WaitUntilTrue(() => investigationComplete);
-            yield return PlayDialogue(1); // investigation complete dialogue
+            yield return PlayDialogue(0); // investigation complete dialogue
             Story.firstShiftTruckInspected = true;
-            truckDoor.setCanEnterDoor(true);
-        }
-        else
-        {
             truckDoor.setCanEnterDoor(true);
         }
 

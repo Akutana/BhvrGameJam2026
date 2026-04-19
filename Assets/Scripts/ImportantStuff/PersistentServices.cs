@@ -32,6 +32,8 @@ public class PersistentServices : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(DoFade(1f, 0f));
@@ -50,8 +52,10 @@ public class PersistentServices : MonoBehaviour
 
     IEnumerator TransitionTo(string sceneName)
     {
-        yield return StartCoroutine(DoFade(0f, 1f));
+        yield return StartCoroutine(DoFade(0f, 1f)); // fade to black
+        fadeImage.color = new Color(0, 0, 0, 1f);   // ensure it stays black
         SceneManager.LoadScene(sceneName);
+        // OnSceneLoaded fires automatically and fades in
     }
 
     IEnumerator DoFade(float from, float to)

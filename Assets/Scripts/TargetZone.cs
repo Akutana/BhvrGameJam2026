@@ -17,16 +17,18 @@ public class TargetZone : MonoBehaviour
 
     public void CheckCompletion()
     {
+        if (IsComplete())
+            doorInteractable.setCanEnterDoor(true);
+    }
+
+    public bool IsComplete()
+    {
         int filledCount = 0;
         foreach (Transform targetPoint in transform)
         {
             if (targetPoint.childCount > 0)
                 filledCount++;
         }
-
-        Debug.Log($"Filled: {filledCount} / {requiredItems}");
-
-        if (filledCount >= requiredItems)
-            doorInteractable.setCanEnterDoor(true);
+        return filledCount >= requiredItems;
     }
 }
