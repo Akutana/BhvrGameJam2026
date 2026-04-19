@@ -10,6 +10,7 @@ TagManager:
   - Metal
   - TruckTarget
   - BaseTarget
+  - Obstacle
   layers:
   - Default
   - TransparentFX

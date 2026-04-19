@@ -59,7 +59,7 @@ public class FinalInsideDirector : SceneDirector
         // Warning sound
         PersistentServices.Instance.PlaySFX(warningClip);
 
-        // Move object from A to B — don't wait for it to finish yet
+        // Move object from A to B - don't wait for it to finish yet
         StartCoroutine(MoveObject());
 
         // Wait for object to reach destination
@@ -85,7 +85,7 @@ public class FinalInsideDirector : SceneDirector
 
         yield return PlayDialogue(1);
 
-        // Dialogue done — player can leave
+        // Dialogue done - player can leave
         engineAudioSource.Stop();
         player.forcedToSit = false;
         truckDoor.setCanEnterDoor(true);

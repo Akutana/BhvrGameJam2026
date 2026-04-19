@@ -31,7 +31,7 @@ public class Shift3InsideDirector : SceneDirector
 
         if (!Story.shift3InsideDone)
         {
-            // First time entering — intro sequence
+            // First time entering ï¿½ intro sequence
             player.Sit(sitPoint, exitPoint);
             player.forcedToSit = true;
 
@@ -60,7 +60,7 @@ public class Shift3InsideDirector : SceneDirector
         }
         else
         {
-            // Returning from outside — force sit, call function, final dialogue, load next
+            // Returning from outside ï¿½ force sit, call function, final dialogue, load next
             player.Sit(sitPoint, exitPoint);
             player.forcedToSit = true;
 
