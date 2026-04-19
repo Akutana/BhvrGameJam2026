@@ -1,11 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PersistentServices : MonoBehaviour
 {
     public static PersistentServices Instance { get; private set; }
+
+    
+    [Header("UI")]
+    public TextMeshProUGUI interactionText;
 
     [Header("Fade")]
     public RawImage fadeImage;

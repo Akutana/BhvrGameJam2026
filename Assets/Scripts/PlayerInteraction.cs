@@ -5,24 +5,29 @@ public class PlayerInteraction : MonoBehaviour
 {
     public Camera cam;
     public float range = 15f;
-
     private Interactable currentInteractable;
     public KeyCode interactKey = KeyCode.E;
-
     public TextMeshProUGUI interactionTextUI;
-
     private Interactable heldObject;
     public float holdDistance = 2f;
     public float moveSpeed = 10f;
 
+    void Start()
+    {
+        interactionTextUI = PersistentServices.Instance.interactionText;
+        interactionTextUI.gameObject.SetActive(false);
+        currentInteractable = null;
+        heldObject = null;
+    }
+
     void Update()
     {
+        if (cam == null || interactionTextUI == null) return;
+
         if (heldObject != null)
         {
             Transform obj = heldObject.transform;
-
             Vector3 targetPos = cam.transform.position + cam.transform.forward * holdDistance;
-
             obj.position = Vector3.Lerp(obj.position, targetPos, Time.deltaTime * moveSpeed);
             obj.rotation = Quaternion.Lerp(obj.rotation, cam.transform.rotation, Time.deltaTime * moveSpeed);
 
@@ -35,7 +40,6 @@ public class PlayerInteraction : MonoBehaviour
             interactionTextUI.text = $"Drop [{interactKey}]";
             if (!interactionTextUI.gameObject.activeSelf)
                 interactionTextUI.gameObject.SetActive(true);
-
             return;
         }
 
@@ -58,7 +62,11 @@ public class PlayerInteraction : MonoBehaviour
                     else if (interactable is not Grabbable)
                     {
                         interactable.Interact();
+                        currentInteractable = null;
+                        heldObject = null;
+                        interactionTextUI.gameObject.SetActive(false);
                     }
+                    return;
                 }
 
                 if (currentInteractable == interactable)
@@ -74,15 +82,12 @@ public class PlayerInteraction : MonoBehaviour
                         interactionTextUI.gameObject.SetActive(false);
                         return;
                     }
-
                     ShowInteractionText(interactable);
                     return;
                 }
 
                 if (interactable.CanBeInteractedWith())
-                {
                     ShowInteractionText(interactable);
-                }
 
                 return;
             }
@@ -97,10 +102,9 @@ public class PlayerInteraction : MonoBehaviour
         return $"{interactable.interactionText} [{interactKey}]";
     }
 
-    private void ShowInteractionText(Interactable interactable)
+    void ShowInteractionText(Interactable interactable)
     {
         interactionTextUI.text = GetInteractionText(interactable);
-
         if (!interactionTextUI.gameObject.activeSelf)
             interactionTextUI.gameObject.SetActive(true);
     }
