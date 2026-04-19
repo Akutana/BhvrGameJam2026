@@ -2098,7 +2098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efff20dac1e7fbb4dac7f88938a46b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrologueOutsideDirector
-  dialogues: []
+  dialogues:
+  - {fileID: 11400000, guid: 6feb805fc5256e64b82ea72f50db857a, type: 2}
   playerVoiceSource: {fileID: 72168553}
   cameraTransform: {fileID: 94916354}
   shakeDuration: 0.5
