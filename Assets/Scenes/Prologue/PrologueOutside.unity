@@ -1405,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.6
+      value: 24.77
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1413,7 +1413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 132.27
+      value: 135.81
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2111,7 +2111,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 94916354}
   shakeDuration: 0.5
   shakeMagnitude: 0.1
-  truckDoor: {fileID: 1835559525}
+  truckDoor: {fileID: 1835559524}
   targetZone: {fileID: 1543007760}
   prologueInsideSceneName: PrologueInside
 --- !u!1001 &1261265793
@@ -2363,6 +2363,10 @@ PrefabInstance:
       value: 0.422
       objectReference: {fileID: 0}
     - target: {fileID: 1677536963830691999, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677536963830691999, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.165
       objectReference: {fileID: 0}
@@ -2371,13 +2375,17 @@ PrefabInstance:
       value: 0.406
       objectReference: {fileID: 0}
     - target: {fileID: 2014272918706750125, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.316
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014272918706750125, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.363
       objectReference: {fileID: 0}
     - target: {fileID: 2027598993893350906, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: doorInteractable
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1835559524}
     - target: {fileID: 5604629037663217650, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_Name
       value: TargetZone (1)
@@ -2388,7 +2396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068376582523560259, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.35
+      value: 20.332043
       objectReference: {fileID: 0}
     - target: {fileID: 7068376582523560259, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2431,12 +2439,20 @@ PrefabInstance:
       value: 0.406
       objectReference: {fileID: 0}
     - target: {fileID: 7246384399535412194, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.282
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246384399535412194, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.011
       objectReference: {fileID: 0}
     - target: {fileID: 9059493808833929477, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.351
+      objectReference: {fileID: 0}
+    - target: {fileID: 9059493808833929477, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.294
       objectReference: {fileID: 0}
     - target: {fileID: 9059493808833929477, guid: f6c930fb9e92e8e4f8a9911e66ab45c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2581,7 +2597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8964458415245963253, guid: c8fc9e0bc11a9b246b67a136172027bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.987957
+      value: 27.97
       objectReference: {fileID: 0}
     - target: {fileID: 8964458415245963253, guid: c8fc9e0bc11a9b246b67a136172027bd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2624,9 +2640,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fc9e0bc11a9b246b67a136172027bd, type: 3}
---- !u!114 &1835559525 stripped
+--- !u!114 &1835559524 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3602848269175751188, guid: c8fc9e0bc11a9b246b67a136172027bd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 296554141207054011, guid: c8fc9e0bc11a9b246b67a136172027bd, type: 3}
   m_PrefabInstance: {fileID: 1835559523}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
