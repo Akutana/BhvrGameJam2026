@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 955957548}
   - {fileID: 184652325}
   - {fileID: 1711625345}
-  firstShiftInsideSceneName: Shift2Loading
+  firstShiftInsideSceneName: FirstShiftInside
 --- !u!1 &184652324
 GameObject:
   m_ObjectHideFlags: 0

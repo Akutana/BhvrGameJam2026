@@ -304,6 +304,8 @@ MonoBehaviour:
     firstShiftOutsideIntroPlayed: 0
     firstShiftTruckInspected: 0
     firstShiftOutsideDone: 0
+    shift3InsideDone: 0
+    shift3OutsideDone: 0
 --- !u!4 &343885698
 Transform:
   m_ObjectHideFlags: 0
@@ -1058,7 +1060,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeMagnitude: 0.1
   truckDoor: {fileID: 1817651871}
-  firstShiftSceneName: FirstShiftInside
+  firstShiftSceneName: Shift3Loading
   truckLoopClip: {fileID: 8300000, guid: 10ca6f5e1453b8e4ea1692e586a73990, type: 3}
   truckStartClip: {fileID: 8300000, guid: 65a22f15bde232c4aa155f640ed0c36c, type: 3}
   targetZone: {fileID: 293957361}
