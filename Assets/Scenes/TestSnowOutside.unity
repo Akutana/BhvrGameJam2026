@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FogColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.2
   m_LinearFogStart: 0
@@ -2035,10 +2035,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlizzardController
   snow: {fileID: 274820618}
   intensity: 0
-  minFogDensity: 0.2
+  minFogDensity: 0.4
   maxFogDensity: 0.5
-  lightFogColor: {r: 0, g: 0, b: 0, a: 1}
-  heavyFogColor: {r: 0, g: 0, b: 0, a: 1}
+  lightFogColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+  heavyFogColor: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
 --- !u!4 &1789480782
 Transform:
   m_ObjectHideFlags: 0
@@ -2077,15 +2077,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4042024260682904952, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0
+      value: 0.12941177
       objectReference: {fileID: 0}
     - target: {fileID: 4042024260682904952, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0
+      value: 0.12941177
       objectReference: {fileID: 0}
     - target: {fileID: 4042024260682904952, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 0.12941177
       objectReference: {fileID: 0}
     - target: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
       propertyPath: m_LocalPosition.x
