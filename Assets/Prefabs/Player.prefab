@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootstepSystem
   audioSource: {fileID: 7030680376757073953}
-  stepInterval: 2
+  stepInterval: 0.8
   playerController: {fileID: 3974267701954006799}
   snowSteps:
   - {fileID: 8300000, guid: f64b0286f36e8db49b170a1d54c8b0ab, type: 3}
@@ -101,6 +101,7 @@ Transform:
   - {fileID: 661166948409144802}
   - {fileID: 284849334237525734}
   - {fileID: 566447197929172967}
+  - {fileID: 5020727499196856788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4572238058378869088
@@ -222,8 +223,8 @@ Camera:
   m_GameObject: {fileID: 6000237004295631617}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -619,3 +620,93 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7416193104567884883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5127817421698308738
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7416193104567884883}
+    m_Modifications:
+    - target: {fileID: -4039933739278214042, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7416193104567884883}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.7224
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1721466
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.7224
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8068747
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.59072274
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116488008574563789, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116488008574563789, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116488008574563789, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 425.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985097370841466130, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+      propertyPath: m_Name
+      value: SnowWalkOutside
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+--- !u!4 &5020727499196856788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 181445574578070358, guid: 18095c2656869d34cacdfcc76edb59db, type: 3}
+  m_PrefabInstance: {fileID: 5127817421698308738}
+  m_PrefabAsset: {fileID: 0}
