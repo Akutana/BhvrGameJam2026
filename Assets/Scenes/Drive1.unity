@@ -133,13 +133,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 100649641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5979c0eca95b32345bc43b46a4f001f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d63093a2f407f44a065d08c721cd81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TruckJitter
   baseAmplitude: 0.02
   baseFrequency: 8
+  rotationZAmount: 1.5
+  rotationXAmount: 1
   bumpAmplitude: 0.2
   bumpDuration: 0.3
+  bumpsPerSecond: 0.5
 --- !u!1 &309008033
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +601,6 @@ GameObject:
   - component: {fileID: 632365590}
   - component: {fileID: 632365589}
   - component: {fileID: 632365588}
-  - component: {fileID: 632365592}
   m_Layer: 0
   m_Name: Ground0
   m_TagString: Untagged
@@ -701,20 +703,6 @@ Transform:
   - {fileID: 782358424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &632365592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632365587}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d079f8831c978048944ab723f7a37ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkMovement
-  speed: 10
-  isDriving: 1
 --- !u!1 &693167845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7142162958749693390, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
@@ -729,7 +717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 773836669}
-  - component: {fileID: 773836668}
+  - component: {fileID: 773836670}
   m_Layer: 0
   m_Name: DriveManager
   m_TagString: Untagged
@@ -737,20 +725,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &773836668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773836667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99390474bae15c94885eccc3e90b4ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DriveManager
-  isDriving: 1
-  speed: 10
 --- !u!4 &773836669
 Transform:
   m_ObjectHideFlags: 0
@@ -766,6 +740,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &773836670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773836667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee19924ef53ea9d42a8dfdcc4cb28b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DriveManager
+  isDriving: 1
+  maxSpeed: 10
+  acceleration: 2
+  deceleration: 3
+  currentSpeed: 0
 --- !u!1 &782358419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1135,6 @@ GameObject:
   - component: {fileID: 1431471764}
   - component: {fileID: 1431471763}
   - component: {fileID: 1431471762}
-  - component: {fileID: 1431471766}
   m_Layer: 0
   m_Name: Ground1
   m_TagString: Untagged
@@ -1247,20 +1237,6 @@ Transform:
   - {fileID: 1541309206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1431471766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431471761}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d079f8831c978048944ab723f7a37ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkMovement
-  speed: 10
-  isDriving: 1
 --- !u!1 &1441820764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1249,6 @@ GameObject:
   - component: {fileID: 1441820767}
   - component: {fileID: 1441820766}
   - component: {fileID: 1441820765}
-  - component: {fileID: 1441820769}
   m_Layer: 0
   m_Name: Ground2
   m_TagString: Untagged
@@ -1376,20 +1351,6 @@ Transform:
   - {fileID: 585889272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1441820769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441820764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d079f8831c978048944ab723f7a37ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkMovement
-  speed: 10
-  isDriving: 1
 --- !u!1 &1541309205
 GameObject:
   m_ObjectHideFlags: 0

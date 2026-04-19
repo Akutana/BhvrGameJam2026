@@ -11,7 +11,8 @@ public class ChunkMovement : MonoBehaviour
     {
         if (DriveManager.Instance.isDriving)
         {
-            float speed = DriveManager.Instance.speed;
+            // float speed = DriveManager.Instance.speed; // for the old DriveManager
+            float speed = DriveManager.Instance.currentSpeed;
             transform.Translate(Vector3.back * speed * Time.deltaTime);
         }
     }

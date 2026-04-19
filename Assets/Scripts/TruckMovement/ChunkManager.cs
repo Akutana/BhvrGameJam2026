@@ -47,10 +47,11 @@ public class ChunkManager : MonoBehaviour
 
     void MoveChunks()
     {
-        float speed = DriveManager.Instance.speed;
+        // float speed = DriveManager.Instance.speed; // This is for the old DriveManager
+        float speed = DriveManager.Instance.currentSpeed;
 
-        if (!DriveManager.Instance.isDriving)
-            return;
+        //if (!DriveManager.Instance.isDriving)
+        //    return;
 
         foreach (Transform chunk in chunks)
         {
