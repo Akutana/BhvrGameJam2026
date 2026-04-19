@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Shift3Inside2
   m_EditorClassIdentifier: Assembly-CSharp::AudioDialogue
   clips:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 8c5cdc25fd57a3947a137d8f31426e62, type: 3}
+  - {fileID: 8300000, guid: 380273c26f5ae6d4585be8cfa94539fc, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
