@@ -7,12 +7,17 @@ public class FirstShiftOutsideDirector : SceneDirector
     public TruckInvestigationTrigger[] investigationTriggers;
     public string firstShiftInsideSceneName;
 
+
+
     int triggersHit = 0;
     bool investigationComplete = false;
     bool playerEntered = false;
 
+    public static FirstShiftOutsideDirector Instance { get; private set; }
+
     protected override void Start()
     {
+        Instance = this;
         truckDoor.setCanEnterDoor(false);
         truckDoor.onEnter.AddListener(() => playerEntered = true);
         base.Start();

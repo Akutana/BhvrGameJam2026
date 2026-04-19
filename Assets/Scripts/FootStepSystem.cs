@@ -6,6 +6,8 @@ public class FootstepSystem : MonoBehaviour
     public float stepInterval = 2.0f;
     public PlayerController playerController;
 
+    private CharacterController controller;
+
     [Header("Surface Sounds")]
     public AudioClip[] snowSteps;
     public AudioClip[] metalSteps;
@@ -15,6 +17,11 @@ public class FootstepSystem : MonoBehaviour
     private float timer;
     private bool wasMoving = false;
     private string currentSurfaceTag = "Untagged";
+
+    void Start()
+    {
+        controller = GetComponentInParent<CharacterController>();
+    }
 
     void Update()
     {
@@ -50,8 +57,17 @@ public class FootstepSystem : MonoBehaviour
 
     void DetectSurface()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+        Vector3 origin = transform.position + Vector3.up * controller.height * 0.5f;
+        Debug.DrawRay(origin, Vector3.down * (controller.height + 0.5f), Color.red);
+
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, controller.height + 0.5f))
+        {
             currentSurfaceTag = hit.collider.tag;
+        }
+        else
+        {
+            Debug.Log("Raycast hit nothing");
+        }
     }
 
     bool IsMovingInput()

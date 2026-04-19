@@ -25,11 +25,6 @@ public class PrologueDirector : SceneDirector
         {
             Story.prologueDialoguePlayed = true;
             yield return PlayDialogue(0); // assign prologue dialogue in Inspector
-            truckDoor.setCanEnterDoor(true);
-        }
-        else
-        {
-            truckDoor.setCanEnterDoor(true);
         }
 
         yield return WaitUntilTrue(() => playerEnteredTruck);
