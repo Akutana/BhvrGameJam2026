@@ -48,7 +48,7 @@ public class Shift3InsideDirector : SceneDirector
 
             yield return PlayDialogue(2);
 
-            // TODO: call function here
+            // TODO: call function here stop
 
             player.forcedToSit = false;
             truckDoor.setCanEnterDoor(true);
@@ -64,7 +64,7 @@ public class Shift3InsideDirector : SceneDirector
             player.Sit(sitPoint, exitPoint);
             player.forcedToSit = true;
 
-            // TODO: call function here
+            // TODO: call function here start again
 
             yield return PlayDialogue(3); // final dialogue after returning from outside
 
