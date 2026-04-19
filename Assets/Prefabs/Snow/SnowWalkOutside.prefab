@@ -4849,5 +4849,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfefb63093d70a049a8dba84680519e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SnowFollowPlayer
-  player: {fileID: 7416193104567884883, guid: 4adc8d25020d528458d4c334a151001c, type: 3}
+  player: {fileID: 0}
   followSpeed: 2
